@@ -7,10 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -19,6 +16,10 @@ import java.io.IOException;
 
 public class ClienteController extends ActionEvent {
     public Button btn_Volver;
+    public Label label_Email;
+    public Label label_FechaNacimiento;
+    public DatePicker dP_Fecha;
+    public TextField tF_Email;
     ObservableList<String> tipoCliente = FXCollections.observableArrayList("Natural","Juridico");
     @FXML
     public AnchorPane registroClientes;
@@ -48,6 +49,23 @@ public class ClienteController extends ActionEvent {
 
     public  void initialize() {
         comboBox_TipoCliente.setItems(tipoCliente);
+        comboBox_TipoCliente.setOnAction( event -> {
+            String seleccion = comboBox_TipoCliente.getSelectionModel().getSelectedItem();
+            if ("Natural".equals(seleccion)){
+                label_Email.setVisible(true);
+                tF_Email.setVisible(true);
+                label_FechaNacimiento.setVisible(true);
+                dP_Fecha.setVisible(true);
+            }
+            else{
+                label_Email.setVisible(false);
+                tF_Email.setVisible(false);
+                label_FechaNacimiento.setVisible(false);
+                dP_Fecha.setVisible(false);
+
+            }
+        });
+
 
 
     }
@@ -59,13 +77,12 @@ public class ClienteController extends ActionEvent {
         tF_Nombre.clear();
 
 
+
+
     }
 
-    public void seleccionarNatural(){
-        if (comboBox_TipoCliente.equals("Natural")){
 
-        }
-    }
+
 
     public void volver() throws IOException {
         Stage stage = (Stage) this.btn_Volver.getScene().getWindow();

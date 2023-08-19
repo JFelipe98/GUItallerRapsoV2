@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.guitallerRepasov2.MainController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.guitallerRepasov2.MainController">
    <children>
-      <Button fx:id="btn_Cliente" layoutX="240.0" layoutY="188.0" mnemonicParsing="false" onAction="#cliente" text="Button" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="200.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="btn_Ventas" layoutX="446.0" layoutY="271.0" mnemonicParsing="false" text="Ventas" />
+      <Button fx:id="btn_Cliente" layoutX="107.0" layoutY="271.0" mnemonicParsing="false" onAction="#cliente" text="Clientes" />
+      <Button fx:id="btn_Productos" layoutX="274.0" layoutY="271.0" mnemonicParsing="false" text="Productos" />
    </children>
 </AnchorPane>

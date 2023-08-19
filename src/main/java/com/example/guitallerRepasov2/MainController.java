@@ -14,11 +14,11 @@ import java.io.IOException;
 
 public class MainController extends ActionEvent {
     public Button btn_Cliente;
+    public Button btn_Ventas;
+    public Button btn_Productos;
 
 
-
-
-   public void cliente() throws IOException {
+    public void cliente() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("registroClientes.fxml"));
        Parent root = loader.load();
        Scene scene = new Scene(root);
