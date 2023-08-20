@@ -9,6 +9,6 @@
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="200.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="btn_Ventas" layoutX="446.0" layoutY="271.0" mnemonicParsing="false" text="Ventas" />
       <Button fx:id="btn_Cliente" layoutX="107.0" layoutY="271.0" mnemonicParsing="false" onAction="#cliente" text="Clientes" />
-      <Button fx:id="btn_Productos" layoutX="274.0" layoutY="271.0" mnemonicParsing="false" text="Productos" />
+      <Button fx:id="btn_Productos" layoutX="274.0" layoutY="271.0" mnemonicParsing="false" onAction="#producto" text="Productos" />
    </children>
 </AnchorPane>

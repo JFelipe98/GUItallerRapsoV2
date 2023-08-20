@@ -28,4 +28,14 @@ public class MainController extends ActionEvent {
        stage.showAndWait();
 
     }
+    public void producto() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("registroProductos.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
+
+    }
 }

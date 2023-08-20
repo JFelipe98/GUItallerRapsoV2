@@ -55,7 +55,7 @@ public class ClienteController extends ActionEvent {
 
 
 
-    public Button btn_Leer;
+
     public Button btn_Actualizar;
     public Button btn_Eliminar;
 
