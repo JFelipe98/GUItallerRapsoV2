@@ -4,22 +4,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ClienteController extends ActionEvent {
+
+
     public Button btn_Volver;
-    public Label label_Email;
+    public Label label_Email_Nit;
     public Label label_FechaNacimiento;
     public DatePicker dP_Fecha;
-    public TextField tF_Email;
+    public TextField tF_Email_Nit;
     ObservableList<String> tipoCliente = FXCollections.observableArrayList("Natural","Juridico");
     @FXML
     public AnchorPane registroClientes;
@@ -52,14 +51,16 @@ public class ClienteController extends ActionEvent {
         comboBox_TipoCliente.setOnAction( event -> {
             String seleccion = comboBox_TipoCliente.getSelectionModel().getSelectedItem();
             if ("Natural".equals(seleccion)){
-                label_Email.setVisible(true);
-                tF_Email.setVisible(true);
+                label_Email_Nit.setText("Email");
+                label_Email_Nit.setVisible(true);
+                tF_Email_Nit.setVisible(true);
                 label_FechaNacimiento.setVisible(true);
                 dP_Fecha.setVisible(true);
             }
             else{
-                label_Email.setVisible(false);
-                tF_Email.setVisible(false);
+                label_Email_Nit.setText("NIT");
+                label_Email_Nit.setVisible(true);
+                tF_Email_Nit.setVisible(true);
                 label_FechaNacimiento.setVisible(false);
                 dP_Fecha.setVisible(false);
 
@@ -70,11 +71,24 @@ public class ClienteController extends ActionEvent {
 
     }
 
-    public void guardarNombre(){
+    public void registrarCliente(){
 
         String nombre = tF_Nombre.getText();
-        System.out.println(nombre);
+        String apellido = tF_Apellido.getText();
+        String identificacion = tF_Identificacion.getText();
+        String telefono = tF_Telefono.getText();
+        String direccion = tF_Direccion.getText();
+
+        System.out.println(nombre +", "+ apellido +", " + identificacion +", "+ telefono +", "+ direccion);
         tF_Nombre.clear();
+        tF_Apellido.clear();
+        tF_Identificacion.clear();
+        tF_Telefono.clear();
+        tF_Direccion.clear();
+        label_Email_Nit.setVisible(false);
+        tF_Email_Nit.setVisible(false);
+        label_FechaNacimiento.setVisible(false);
+        dP_Fecha.setVisible(false);
 
 
 
