@@ -12,6 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class ProductoController extends ActionEvent {
+    //Atributos de la interfaz producto
     public TableColumn<Producto,String> columna_Pais;
     public TableColumn<Producto,Double> columna_Peso;
     public TableColumn<Producto,Double> columna_Temperatura;
@@ -34,6 +35,7 @@ public class ProductoController extends ActionEvent {
     public TextField tF_Descripcion;
     public TextField tF_NombreP;
     public ComboBox comboBox_tipoProducto;
+    //Lista observable de elementos del comboBox tipo de producto y país (No implementada)
 
     public ObservableList<String> tipoProdcuto = FXCollections.observableArrayList("--SELECCIONE--", "Perecederos","Refrigerados","Envasados");
     public  ObservableList<String> paisOrigen = FXCollections.observableArrayList("--SELECCIONE--","Col","Arg","Chil","Ecu","Per");
@@ -46,8 +48,13 @@ public class ProductoController extends ActionEvent {
     public TableColumn<Producto, String> columna_CodigoSanit;
     public TableView<Producto> tablaProducto2;
     public TableColumn<Producto, String> columna_FechaEnvase;
-
+////Método que inicializa parametros, tablas y condiciones de vista según la elección del comBox
     public void initialize() {
+        /*
+        Elementos de la tabla de producto, debe llenarse columna a columna con los atributos
+        del objeto en cuestión. En este caso es un objeto Producto. el String al final es el nombre
+        exacto del atributo en cuestión.
+         */
        columna_Codigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
        columna_Nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
        columna_Descripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
@@ -60,10 +67,12 @@ public class ProductoController extends ActionEvent {
         columna_Peso.setCellValueFactory(new PropertyValueFactory<>("pesoEnvase"));
        columna_FechaEnvase.setCellValueFactory(new PropertyValueFactory<>("pesoEnvase"));
        columna_tipoProducto.setCellValueFactory(new PropertyValueFactory<>("tipoProducto"));
-        tablaProducto.setItems(MainApplication.getProductos());
+       // Inicialización de las tablas de productos con los atributos de la lista observable de productos
+       tablaProducto.setItems(MainApplication.getProductos());
         tablaProducto2.setItems(MainApplication.getProductos());
+        // Inicialización del parametro temperatura/peso (comparten textField) de lo contrario, salta error.
         tF_Temperatura_Peso.setText("0");
-
+// Inicialización del comboBox tipoProducto, dependiendo de la acción, algunos elementos aparecen y desaparecen.
         comboBox_tipoProducto.setItems(tipoProdcuto);
         comboBox_PaisOrigen.setItems(paisOrigen);
         comboBox_tipoProducto.setOnAction(event -> {
@@ -112,6 +121,15 @@ public class ProductoController extends ActionEvent {
 
 
     }
+    /*
+Método que registra los productos.
+Se captura la info en variables y dependiendo de la selección del comboBox
+instancia un producto y se llama a la función registrarProducto()
+del MainAplication.
+(Se creó allí para la persistencia de datos mientras la app esté abierta).
+La función lo que hace es enviar el cliente instanciado, lo agrega a la lista de observables y
+retorna la lista para ser actualizada la tabla.
+ */
     public void registrarProducto(){
 
         String codigo = this.tF_Codigo.getText();
@@ -140,7 +158,7 @@ public class ProductoController extends ActionEvent {
             tablaProducto.setItems(MainApplication.registrarProductoTabla(p2));
 
         }
-
+        //Codigo que "limpia" las casillas para agregar un nuevo producto
         tF_NombreP.clear();
         tF_Codigo.clear();
         tF_Descripcion.clear();
@@ -154,7 +172,11 @@ public class ProductoController extends ActionEvent {
 
 
     }
-
+    /*
+    Método que actualiza productos.
+    retorna la información de la tabla a las casillas del formulario para ser editadas, a su vez
+    elimina el dato actual a la espera de un nuevo registro.
+     */
     public void actualizarProducto(){
         Producto productoSeleccionado = tablaProducto.getSelectionModel().getSelectedItem();
         tF_Codigo.setText(productoSeleccionado.getCodigo());
@@ -169,13 +191,21 @@ public class ProductoController extends ActionEvent {
 
 
     }
+    /*
+    Método que elimina productos.
+    selecciona un producto de la tabla y llama a una función del mainApplication (donde
+    está la lista observable) y remueve el dato.
+     */
     public void eliminarProducto(){
         Producto productoSeleccionado = tablaProducto.getSelectionModel().getSelectedItem();
         MainApplication.eliminarProducto(productoSeleccionado);
         tablaProducto.refresh();
 
     }
-
+/*
+Método volver.
+Cierra la ventana.
+ */
     public void volver() {
         Stage stage = (Stage) this.btn_VolverP.getScene().getWindow();
         stage.close();

@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainApplication extends Application {
-    private static ArrayList<Cliente> listaCliente;
+    //Datos predeterminados
     Natural cPrueba = new Natural("Juan", "Ciro", "1094970892", "3003283500", "Camino del puerto",true,"jfciros@uqvirtual.edu.co","1998-10-16");
     Natural cPrueba2 = new Natural("Laura", "Sanchez", "1193123456", "3006720160", "toledo Boulevard",true,"lmsanchezf@uqvirtual.edu.co","2000-05-17");
     Juridico cPrueba3 = new Juridico("Arepas Quesudas","NA","10975674327","3188198242","Barrio Lindaraja",false,"10975674327-4");
@@ -20,7 +20,10 @@ public class MainApplication extends Application {
    ProductoRefrigerado pPrueba2 = new ProductoRefrigerado("Refrigerados","002","Fresa","Fruta",6000.0,300,"A234",12.0);
    ProductoEnvasado pPrueba3 = new ProductoEnvasado("Envasados","003","Yerba Mate","Infusiones",5000.0,20,"2023-07-31",125.0);
 
-
+/*
+Listas observables de clientes y productos, esenciales para guardar la información del
+registro de clientes y productos.
+ */
     public static ObservableList<Cliente> clientes = FXCollections.observableArrayList();
     public static ObservableList<Cliente> getClientes() {
         return clientes;
@@ -28,6 +31,11 @@ public class MainApplication extends Application {
     public static ObservableList<Producto> productos =FXCollections.observableArrayList();
     public static ObservableList<Producto> getProductos() { return productos; }
     @Override
+    /*
+    método start
+    inicia la ventana home que da acceso a las demás ventanas
+    agrega los datos predeterminados a la lista observable.
+     */
     public void start(Stage stage) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("home.fxml"));
@@ -36,9 +44,7 @@ public class MainApplication extends Application {
         stage.setScene(scene);
         stage.show();
 
-        listaCliente = new ArrayList<>();
-        listaCliente.add(cPrueba);
-        listaCliente.add(cPrueba2);
+
         clientes.add(cPrueba);
         clientes.add(cPrueba2);
         clientes.add(cPrueba3);
@@ -55,11 +61,9 @@ public class MainApplication extends Application {
         launch();
     }
     /*
-    public static void registrarCliente(Cliente c){
-        listaCliente.add(c);
-        for (int i=0;i<listaCliente.size();i++){
-            listaCliente.get(i).imprimir();
-        }
+    Métodos registrar y eliminar cliente.
+    agregan y remueven respectivamente elementos a la lista observable y retorna
+    la lista para actualizar la tabla
     }*/
     public static ObservableList registrarClienteTabla(Cliente c){
         clientes.add(c);
@@ -71,6 +75,11 @@ public class MainApplication extends Application {
 
         return clientes;
     }
+    /*
+   Métodos registrar y eliminar producto.
+   agregan y remueven respectivamente elementos a la lista observable y retorna
+   la lista para actualizar la tabla
+   }*/
     public static ObservableList registrarProductoTabla(Producto p){
         productos.add(p);
         return productos;

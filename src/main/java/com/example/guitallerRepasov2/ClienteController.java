@@ -16,7 +16,7 @@ public class ClienteController extends ActionEvent {
 
 
 
-
+//Atributos de la interfaz gráfica
     public Button btn_Volver;
     public Label label_Email_Nit;
     public Label label_FechaNacimiento;
@@ -32,6 +32,7 @@ public class ClienteController extends ActionEvent {
     public TableColumn<Natural, String> columnaEmail;
     public TableColumn<Natural, String> columnaFecha;
     public TableColumn<Juridico,String> columnaNit;
+  //Lista observable de elementos del comboBox tipo de cliente
     public ObservableList<String> tipoCliente = FXCollections.observableArrayList("--SELECCIONE--","Natural","Juridico");
     @FXML
     public AnchorPane registroClientes;
@@ -61,8 +62,13 @@ public class ClienteController extends ActionEvent {
 
 
 
+//Método que inicializa parametros, tablas y condiciones de vista según la elección del comBox
     public  void initialize() {
-
+/*
+        Elementos de la tabla de clientes, debe llenarse columna a columna con los atributos
+        del objeto en cuestión. En este caso es un objeto Cliente. el String al final es el nombre
+        exacto del atributo en cuestión.
+ */
         columnaNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         columnaApellido.setCellValueFactory(new PropertyValueFactory<>("apellido"));
         columnaIdentificacion.setCellValueFactory(new PropertyValueFactory<>("identificacion"));
@@ -72,10 +78,13 @@ public class ClienteController extends ActionEvent {
         columnaEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         columnaFecha.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
         columnaNit.setCellValueFactory(new PropertyValueFactory<>("nit"));
+        //inicialización de la tabla con los objetos predeterminados
         tabla_Clientes.setItems(MainApplication.getClientes());
 
 
-
+/*
+Inicialización del comboBox, dependiendo de la acción, algunos elementos aparecen y desaparecen.
+ */
         comboBox_TipoCliente.setItems(tipoCliente);
         comboBox_TipoCliente.setOnAction( event -> {
             String seleccion = comboBox_TipoCliente.getSelectionModel().getSelectedItem();
@@ -107,7 +116,15 @@ public class ClienteController extends ActionEvent {
 
 
     }
-
+/*
+Método que registra los clientes.
+Se captura la info en variables y dependiendo de la selección del comboBox
+instancia un cliente natural o uno juridico y se llama a la función registrarClienteTabla()
+del MainAplication.
+(Se creó allí para la persistencia de datos mientras la app esté abierta).
+La función lo que hace es enviar el cliente instanciado, lo agrega a la lista de observables y
+retorna la lista para ser actualizada la tabla.
+ */
     public void registrarCliente(){
 
         String nombre = this.tF_Nombre.getText();
@@ -124,19 +141,19 @@ public class ClienteController extends ActionEvent {
         if ("Natural".equals(comboBox_TipoCliente.getSelectionModel().getSelectedItem())){
             esNatural=true;
             Natural c1 = new Natural(nombre,apellido,identificacion,telefono,direccion,esNatural,email,fechaNacimiento);
-           // MainApplication.registrarCliente(c1);
+
             tabla_Clientes.setItems(MainApplication.registrarClienteTabla(c1));
 
         }
         else{
             Juridico c= new Juridico(nombre,apellido,identificacion,telefono,direccion,esNatural,nit);
-            //MainApplication.registrarCliente(c);
+
             tabla_Clientes.setItems(MainApplication.registrarClienteTabla(c));
 
         }
 
 
-
+    //Codigo que "limpia" las casillas para agregar un nuevo cliente
 
         tF_Nombre.clear();
         tF_Apellido.clear();
@@ -153,6 +170,11 @@ public class ClienteController extends ActionEvent {
         comboBox_TipoCliente.getSelectionModel().select(0);
 
     }
+    /*
+    Método que actualiza clientes.
+    retorna la información de la tabla a las casillas del formulario para ser editadas, a su vez
+    elimina el dato actual a la espera de un nuevo registro.
+     */
     public void actualizarCliente(){
         Cliente clienteSeleccionado = tabla_Clientes.getSelectionModel().getSelectedItem();
         tF_Nombre.setText(clienteSeleccionado.nombre);
@@ -170,12 +192,20 @@ public class ClienteController extends ActionEvent {
         MainApplication.eliminarCliente(clienteSeleccionado);
         tabla_Clientes.refresh();
     }
+    /*
+    Método que elimina clientes.
+    selecciona un cliente de la tabla y llama a una función del mainApplication (donde
+    está la lista observable) y remueve el dato.
+     */
     public void eliminarCliente(){
         Cliente clienteSeleccionado = tabla_Clientes.getSelectionModel().getSelectedItem();
         MainApplication.eliminarCliente(clienteSeleccionado);
         tabla_Clientes.refresh();
     }
-
+/*
+Método volver.
+Cierra la ventana.
+ */
     public void volver() {
         Stage stage = (Stage) this.btn_Volver.getScene().getWindow();
         stage.close();
