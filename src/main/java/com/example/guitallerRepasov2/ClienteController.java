@@ -124,13 +124,13 @@ public class ClienteController extends ActionEvent {
         if ("Natural".equals(comboBox_TipoCliente.getSelectionModel().getSelectedItem())){
             esNatural=true;
             Natural c1 = new Natural(nombre,apellido,identificacion,telefono,direccion,esNatural,email,fechaNacimiento);
-            MainApplication.registrarCliente(c1);
+           // MainApplication.registrarCliente(c1);
             tabla_Clientes.setItems(MainApplication.registrarClienteTabla(c1));
 
         }
         else{
             Juridico c= new Juridico(nombre,apellido,identificacion,telefono,direccion,esNatural,nit);
-            MainApplication.registrarCliente(c);
+            //MainApplication.registrarCliente(c);
             tabla_Clientes.setItems(MainApplication.registrarClienteTabla(c));
 
         }
@@ -138,7 +138,7 @@ public class ClienteController extends ActionEvent {
 
 
 
-         tF_Nombre.clear();
+        tF_Nombre.clear();
         tF_Apellido.clear();
         tF_Identificacion.clear();
         tF_Telefono.clear();

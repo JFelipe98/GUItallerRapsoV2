@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="546.0" prefWidth="1163.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.guitallerRepasov2.ProductoController">
+<AnchorPane prefHeight="546.0" prefWidth="1215.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.guitallerRepasov2.ProductoController">
    <Label layoutX="224.0" layoutY="14.0" text="REGISTRO PRODUCTO">
       <font>
          <Font size="48.0" />
@@ -31,7 +31,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="tF_Producto" prefHeight="25.0" prefWidth="190.0" />
+      <TextField fx:id="tF_Codigo" prefHeight="25.0" prefWidth="190.0" />
    </HBox>
    <HBox layoutX="34.0" layoutY="171.0" prefHeight="26.0" prefWidth="359.0">
       <Label prefHeight="17.0" prefWidth="171.0" text="Nombre">
@@ -89,23 +89,29 @@
       <ComboBox fx:id="comboBox_PaisOrigen" prefHeight="25.0" prefWidth="190.0" promptText="--SELECCIONE--" visible="false" />
    </HBox>
    <HBox layoutX="34.0" layoutY="481.0" prefHeight="26.0" prefWidth="400.0">
-      <Button fx:id="btn_Registrar" mnemonicParsing="false" prefWidth="100.0" text="Registrar" />
-      <Button fx:id="btn_Actualizar" mnemonicParsing="false" prefWidth="100.0" text="Actualizar" />
-      <Button fx:id="btn_Eliminar" mnemonicParsing="false" prefWidth="100.0" text="Eliminar" />
+      <Button fx:id="btn_Registrar" mnemonicParsing="false" onAction="#registrarProducto" prefWidth="100.0" text="Registrar" />
+      <Button fx:id="btn_Actualizar" mnemonicParsing="false" onAction="#actualizarProducto" prefWidth="100.0" text="Actualizar" />
+      <Button fx:id="btn_Eliminar" mnemonicParsing="false" onAction="#eliminarProducto" prefWidth="100.0" text="Eliminar" />
       <Button fx:id="btn_VolverP" mnemonicParsing="false" onAction="#volver" prefWidth="100.0" text="Volver" />
    </HBox>
-   <TableView layoutX="404.0" layoutY="84.0" prefHeight="200.0" prefWidth="732.0">
+   <TableView fx:id="tablaProducto" layoutX="450.0" layoutY="97.0" prefHeight="200.0" prefWidth="501.0">
       <columns>
          <TableColumn fx:id="columna_Codigo" prefWidth="58.0" text="Codigo" />
          <TableColumn fx:id="columna_Nombre" prefWidth="77.99990844726562" text="Nombre" />
          <TableColumn fx:id="columna_Descripcion" prefWidth="90.666748046875" text="Descripción" />
          <TableColumn fx:id="columna_ValorUnit" prefWidth="75.0" text="Valor unit." />
-         <TableColumn fx:id="columna_Stock" prefWidth="44.66668701171875" text="Stock" />
-         <TableColumn fx:id="columna_tipoProducto" prefWidth="90.0" text="Tipo Producto" />
-         <TableColumn fx:id="columna_FechaV" prefWidth="72.6666259765625" text="Fecha " />
-         <TableColumn fx:id="columna_Temperatura" prefWidth="94.0" text="Temperatura" />
-         <TableColumn fx:id="columna_Peso" prefWidth="75.0" text="Peso Envase" />
-         <TableColumn fx:id="columna_Pais" prefWidth="50.6666259765625" text="País" />
+         <TableColumn fx:id="columna_Stock" prefWidth="92.0" text="Stock" />
+         <TableColumn fx:id="columna_tipoProducto" prefWidth="105.3333740234375" text="Tipo Producto" />
+      </columns>
+   </TableView>
+   <TableView fx:id="tablaProducto2" layoutX="450.0" layoutY="301.0" prefHeight="200.0" prefWidth="501.0">
+      <columns>
+         <TableColumn fx:id="columna_FechaV" prefWidth="120.66668701171875" text="Fecha Vencimiento" />
+         <TableColumn fx:id="columna_CodigoSanit" prefWidth="78.6666259765625" text="Codigo Sanit" />
+         <TableColumn fx:id="columna_Temperatura" prefWidth="82.66668701171875" text="Temperatura" />
+         <TableColumn fx:id="columna_FechaEnvase" prefWidth="91.33331298828125" text="Fecha Envase" />
+         <TableColumn fx:id="columna_Peso" prefWidth="74.0" text="Peso Envase" />
+         <TableColumn fx:id="columna_Pais" prefWidth="54.0" text="País" />
       </columns>
    </TableView>
 </AnchorPane>
