@@ -1,20 +1,23 @@
 package Model;
 
 public class Cliente {
-    private  String nombre;
-    private  String apellido;
-    private  String identificacion;
+    public String nombre;
+    public String apellido;
+    public String identificacion;
 
 
 
-    private  String telefono;
-    private  String direccion;
-    public Cliente(String nombre, String apellido, String identificacion, String telefono, String direccion) {
+    public boolean esNatural;
+
+    public String telefono;
+    public String direccion;
+    public Cliente(String nombre, String apellido, String identificacion, String telefono, String direccion, boolean esNatural) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.identificacion = identificacion;
         this.telefono = telefono;
         this.direccion = direccion;
+        this.esNatural=esNatural;
     }
 
     public String getNombre() {
@@ -55,16 +58,24 @@ public class Cliente {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+    public boolean getEsNatural() {
+        return esNatural;
+    }
+
+    public void setEsNatural(boolean esNatural) {
+        this.esNatural = esNatural;
+    }
 
 
     public  void imprimir() {
-
+      /*
         System.out.println("Cliente{" +
-                "nombre='" + nombre + '\'' +
+        "nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", identificacion='" + identificacion + '\'' +
                 ", telefono='" + telefono + '\'' +
-                ", direccion='" + direccion + '\'' +
-                '}');
+                ", direccion='" + direccion + '\'' );
+    }
+       */
     }
 }

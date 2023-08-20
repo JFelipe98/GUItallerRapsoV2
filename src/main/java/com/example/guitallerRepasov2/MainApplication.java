@@ -1,6 +1,7 @@
 package com.example.guitallerRepasov2;
 
 import Model.Cliente;
+import Model.Natural;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,8 +12,9 @@ import java.util.ArrayList;
 
 public class MainApplication extends Application {
     private static ArrayList<Cliente> listaCliente;
-    Cliente cPrueba = new Cliente("Naruto","Uzumaki","9876543210","3151234567", "Cra 24 #48-00");
-    Cliente cPrueba2 = new Cliente("Harry","Potter","9876543210","3151234567", "Cra 24 #48-00");
+    Natural cPrueba = new Natural("Juan", "Ciro", "1094970892", "3003283500", "Camino del puerto",true,"jfciros@uqvirtual.edu.co","1998-10-16");
+    Natural cPrueba2 = new Natural("Laura", "Sanchez", "1193123456", "3006700142", "toledo Boulevard",true,"lmsanchezf@uqvirtual.edu.co","2000-05-17");
+
 
 
     @Override
@@ -23,10 +25,10 @@ public class MainApplication extends Application {
         stage.setTitle("Home");
         stage.setScene(scene);
         stage.show();
+
         listaCliente = new ArrayList<>();
         listaCliente.add(cPrueba);
         listaCliente.add(cPrueba2);
-
 
 
 
@@ -38,9 +40,12 @@ public class MainApplication extends Application {
     }
     public static void registrarCliente(Cliente c){
 
+
         listaCliente.add(c);
         for (int i=0;i<listaCliente.size();i++){
             listaCliente.get(i).imprimir();
         }
+
+
     }
 }
