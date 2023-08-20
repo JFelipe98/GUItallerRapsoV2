@@ -92,6 +92,7 @@ public class ClienteController extends ActionEvent {
                 tF_Email_Nit.setVisible(true);
                 label_FechaNacimiento.setVisible(false);
                 dP_Fecha.setVisible(false);
+                dP_Fecha.setValue(null);
 
             }
             else{
@@ -143,6 +144,7 @@ public class ClienteController extends ActionEvent {
         tF_Telefono.clear();
         tF_Direccion.clear();
         tF_Email_Nit.clear();
+        dP_Fecha.setValue(null);
 
         label_Email_Nit.setVisible(false);
         tF_Email_Nit.setVisible(false);
@@ -152,6 +154,20 @@ public class ClienteController extends ActionEvent {
 
     }
     public void actualizarCliente(){
+        Cliente clienteSeleccionado = tabla_Clientes.getSelectionModel().getSelectedItem();
+        tF_Nombre.setText(clienteSeleccionado.nombre);
+        tF_Apellido.setText(clienteSeleccionado.apellido);
+        tF_Identificacion.setText(clienteSeleccionado.identificacion);
+        tF_Telefono.setText(clienteSeleccionado.telefono);
+        tF_Direccion.setText(clienteSeleccionado.direccion);
+        if(clienteSeleccionado.esNatural=true){
+            comboBox_TipoCliente.setValue("Natural");
+
+        }
+        else{
+            comboBox_TipoCliente.setValue("Juridico");
+        }
+        MainApplication.eliminarCliente(clienteSeleccionado);
         tabla_Clientes.refresh();
     }
     public void eliminarCliente(){
