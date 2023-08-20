@@ -1,5 +1,6 @@
 package com.example.guitallerRepasov2;
 
+import Model.Cliente;
 import Model.Juridico;
 import Model.Natural;
 import javafx.collections.FXCollections;
@@ -11,9 +12,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 public class ClienteController extends ActionEvent {
 
 
@@ -24,15 +22,16 @@ public class ClienteController extends ActionEvent {
     public Label label_FechaNacimiento;
     public DatePicker dP_Fecha;
     public TextField tF_Email_Nit;
-    public TableView<Natural> tabla_Clientes;
-    public TableColumn<Natural, String> columnaNombre;
-    public TableColumn<Natural, String> columnaApellido;
-    public TableColumn<Natural, String> columnaIdentificacion;
-    public TableColumn<Natural, String> columnaTelefono;
-    public TableColumn<Natural, String> columnaDireccion;
-    public TableColumn<Natural, String> columnaNatural;
+    public TableView<Cliente> tabla_Clientes;
+    public TableColumn<Cliente, String> columnaNombre;
+    public TableColumn<Cliente, String> columnaApellido;
+    public TableColumn<Cliente, String> columnaIdentificacion;
+    public TableColumn<Cliente, String> columnaTelefono;
+    public TableColumn<Cliente, String> columnaDireccion;
+    public TableColumn<Cliente, String> columnaNatural;
     public TableColumn<Natural, String> columnaEmail;
     public TableColumn<Natural, String> columnaFecha;
+    public TableColumn<Juridico,String> columnaNit;
     public ObservableList<String> tipoCliente = FXCollections.observableArrayList("--SELECCIONE--","Natural","Juridico");
     @FXML
     public AnchorPane registroClientes;
@@ -62,7 +61,6 @@ public class ClienteController extends ActionEvent {
 
 
 
-
     public  void initialize() {
 
         columnaNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
@@ -73,6 +71,7 @@ public class ClienteController extends ActionEvent {
         columnaNatural.setCellValueFactory(new PropertyValueFactory<>("esNatural"));
         columnaEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         columnaFecha.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
+        columnaNit.setCellValueFactory(new PropertyValueFactory<>("nit"));
         tabla_Clientes.setItems(MainApplication.getClientes());
 
 
@@ -126,12 +125,13 @@ public class ClienteController extends ActionEvent {
             Natural c1 = new Natural(nombre,apellido,identificacion,telefono,direccion,esNatural,email,fechaNacimiento);
             MainApplication.registrarCliente(c1);
             tabla_Clientes.setItems(MainApplication.registrarClienteTabla(c1));
-            tabla_Clientes.refresh();
 
         }
         else{
-            Juridico c1= new Juridico(nombre,apellido,identificacion,telefono,direccion,esNatural,nit);
-            MainApplication.registrarCliente(c1);
+            Juridico c= new Juridico(nombre,apellido,identificacion,telefono,direccion,esNatural,nit);
+            MainApplication.registrarCliente(c);
+            tabla_Clientes.setItems(MainApplication.registrarClienteTabla(c));
+
         }
 
 
@@ -152,7 +152,12 @@ public class ClienteController extends ActionEvent {
 
     }
     public void actualizarCliente(){
-
+        tabla_Clientes.refresh();
+    }
+    public void eliminarCliente(){
+        Cliente clienteSeleccionado = tabla_Clientes.getSelectionModel().getSelectedItem();
+        MainApplication.eliminarCliente(clienteSeleccionado);
+        tabla_Clientes.refresh();
     }
 
     public void volver() {
