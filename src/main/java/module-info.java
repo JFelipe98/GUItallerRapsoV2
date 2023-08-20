@@ -5,5 +5,6 @@ module GUItallerRepasoV2 {
     exports com.example.guitallerRepasov2;
 
     opens com.example.guitallerRepasov2;
+    opens Model;
 
 }

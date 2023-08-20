@@ -13,6 +13,9 @@ public class Cliente {
 
     public String telefono;
     public String direccion;
+    public Cliente(){
+
+    }
     public Cliente(String nombre, String apellido, String identificacion, String telefono, String direccion, boolean esNatural) {
         this.nombre = nombre;
         this.apellido = apellido;

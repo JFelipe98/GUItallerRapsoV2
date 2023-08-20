@@ -1,6 +1,5 @@
 package com.example.guitallerRepasov2;
 
-import Model.Cliente;
 import Model.Juridico;
 import Model.Natural;
 import javafx.collections.FXCollections;
@@ -12,7 +11,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class ClienteController extends ActionEvent {
 
@@ -33,7 +33,7 @@ public class ClienteController extends ActionEvent {
     public TableColumn<Natural, String> columnaNatural;
     public TableColumn<Natural, String> columnaEmail;
     public TableColumn<Natural, String> columnaFecha;
-    ObservableList<String> tipoCliente = FXCollections.observableArrayList("Natural","Juridico");
+    public ObservableList<String> tipoCliente = FXCollections.observableArrayList("--SELECCIONE--","Natural","Juridico");
     @FXML
     public AnchorPane registroClientes;
     public Label label_Nombre;
@@ -60,11 +60,22 @@ public class ClienteController extends ActionEvent {
     public Button btn_Actualizar;
     public Button btn_Eliminar;
 
-    ObservableList<Natural> clientes;
+
 
 
     public  void initialize() {
-        // Inicializa listaCliente
+
+        columnaNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        columnaApellido.setCellValueFactory(new PropertyValueFactory<>("apellido"));
+        columnaIdentificacion.setCellValueFactory(new PropertyValueFactory<>("identificacion"));
+        columnaTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
+        columnaDireccion.setCellValueFactory(new PropertyValueFactory<>("direccion"));
+        columnaNatural.setCellValueFactory(new PropertyValueFactory<>("esNatural"));
+        columnaEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        columnaFecha.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
+        tabla_Clientes.setItems(MainApplication.getClientes());
+
+
 
         comboBox_TipoCliente.setItems(tipoCliente);
         comboBox_TipoCliente.setOnAction( event -> {
@@ -76,7 +87,7 @@ public class ClienteController extends ActionEvent {
                 label_FechaNacimiento.setVisible(true);
                 dP_Fecha.setVisible(true);
             }
-            else{
+            else if("Juridico".equals(seleccion)){
                 label_Email_Nit.setText("NIT");
                 label_Email_Nit.setVisible(true);
                 tF_Email_Nit.setVisible(true);
@@ -84,21 +95,15 @@ public class ClienteController extends ActionEvent {
                 dP_Fecha.setVisible(false);
 
             }
+            else{
+                label_Email_Nit.setVisible(false);
+                tF_Email_Nit.setVisible(false);
+                label_FechaNacimiento.setVisible(false);
+                dP_Fecha.setVisible(false);
+            }
         });
-        clientes = FXCollections.observableArrayList(
-                new Natural("Juan", "Ciro", "1094970892", "3003283500", "Camino del puerto",true,"jfciros@uqvirtual.edu.co","1998-10-16")
 
-        );
-        tabla_Clientes.setItems(clientes);
 
-        this.columnaNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
-        this.columnaApellido.setCellValueFactory(new PropertyValueFactory("apellido"));
-        this.columnaIdentificacion.setCellValueFactory(new PropertyValueFactory("identificacion"));
-        this.columnaTelefono.setCellValueFactory(new PropertyValueFactory("telefono"));
-        this.columnaDireccion.setCellValueFactory(new PropertyValueFactory("dirección"));
-        this.columnaNatural.setCellValueFactory(new PropertyValueFactory("esNatural"));
-        this.columnaEmail.setCellValueFactory(new PropertyValueFactory("email"));
-        this.columnaFecha.setCellValueFactory(new PropertyValueFactory("fechaNacimiento"));
 
 
     }
@@ -120,11 +125,11 @@ public class ClienteController extends ActionEvent {
             esNatural=true;
             Natural c1 = new Natural(nombre,apellido,identificacion,telefono,direccion,esNatural,email,fechaNacimiento);
             MainApplication.registrarCliente(c1);
-            this.clientes.add(c1);
-            this.tabla_Clientes.setItems(clientes);
+            tabla_Clientes.setItems(MainApplication.registrarClienteTabla(c1));
+            tabla_Clientes.refresh();
+
         }
         else{
-            esNatural=false;
             Juridico c1= new Juridico(nombre,apellido,identificacion,telefono,direccion,esNatural,nit);
             MainApplication.registrarCliente(c1);
         }
@@ -143,13 +148,14 @@ public class ClienteController extends ActionEvent {
         tF_Email_Nit.setVisible(false);
         label_FechaNacimiento.setVisible(false);
         dP_Fecha.setVisible(false);
+        comboBox_TipoCliente.getSelectionModel().select(0);
 
     }
     public void actualizarCliente(){
 
     }
 
-    public void volver() throws IOException {
+    public void volver() {
         Stage stage = (Stage) this.btn_Volver.getScene().getWindow();
         stage.close();
 

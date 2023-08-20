@@ -3,6 +3,8 @@ package com.example.guitallerRepasov2;
 import Model.Cliente;
 import Model.Natural;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -13,8 +15,13 @@ import java.util.ArrayList;
 public class MainApplication extends Application {
     private static ArrayList<Cliente> listaCliente;
     Natural cPrueba = new Natural("Juan", "Ciro", "1094970892", "3003283500", "Camino del puerto",true,"jfciros@uqvirtual.edu.co","1998-10-16");
-    Natural cPrueba2 = new Natural("Laura", "Sanchez", "1193123456", "3006700142", "toledo Boulevard",true,"lmsanchezf@uqvirtual.edu.co","2000-05-17");
+    Natural cPrueba2 = new Natural("Laura", "Sanchez", "1193123456", "3006720160", "toledo Boulevard",true,"lmsanchezf@uqvirtual.edu.co","2000-05-17");
 
+    public static ObservableList<Natural> getClientes() {
+        return clientes;
+    }
+
+    public static ObservableList<Natural> clientes = FXCollections.observableArrayList();
 
 
     @Override
@@ -29,6 +36,8 @@ public class MainApplication extends Application {
         listaCliente = new ArrayList<>();
         listaCliente.add(cPrueba);
         listaCliente.add(cPrueba2);
+        clientes.add(cPrueba);
+        clientes.add(cPrueba2);
 
 
 
@@ -47,5 +56,9 @@ public class MainApplication extends Application {
         }
 
 
+    }
+    public static ObservableList registrarClienteTabla(Natural c){
+        clientes.add(c);
+       return clientes;
     }
 }

@@ -26,6 +26,12 @@ public class Natural extends Cliente{
     public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
+
+
+    public Natural(){
+        super();
+
+    }
     public Natural(String nombre, String apellido, String identificacion, String telefono, String direccion,boolean esNatural, String email, String fechaNacimiento) {
         super(nombre, apellido, identificacion, telefono, direccion,esNatural);
         this.email=email;
