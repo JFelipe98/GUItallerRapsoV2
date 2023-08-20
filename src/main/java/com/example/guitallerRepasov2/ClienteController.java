@@ -1,5 +1,6 @@
 package com.example.guitallerRepasov2;
 
+import Model.Cliente;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -8,10 +9,13 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class ClienteController extends ActionEvent {
+
+
 
 
     public Button btn_Volver;
@@ -47,6 +51,8 @@ public class ClienteController extends ActionEvent {
     public Button btn_Eliminar;
 
     public  void initialize() {
+        // Inicializa listaCliente
+
         comboBox_TipoCliente.setItems(tipoCliente);
         comboBox_TipoCliente.setOnAction( event -> {
             String seleccion = comboBox_TipoCliente.getSelectionModel().getSelectedItem();
@@ -68,7 +74,6 @@ public class ClienteController extends ActionEvent {
         });
 
 
-
     }
 
     public void registrarCliente(){
@@ -79,8 +84,10 @@ public class ClienteController extends ActionEvent {
         String telefono = tF_Telefono.getText();
         String direccion = tF_Direccion.getText();
 
-        System.out.println(nombre +", "+ apellido +", " + identificacion +", "+ telefono +", "+ direccion);
-        tF_Nombre.clear();
+        Cliente c1 = new Cliente(nombre,apellido,identificacion,telefono,direccion);
+        MainApplication.registrarCliente(c1);
+
+         tF_Nombre.clear();
         tF_Apellido.clear();
         tF_Identificacion.clear();
         tF_Telefono.clear();
