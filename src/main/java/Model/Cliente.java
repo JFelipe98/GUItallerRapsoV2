@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.Objects;
+
 public class Cliente {
     public String nombre;
     public String apellido;
@@ -66,6 +68,17 @@ public class Cliente {
         this.esNatural = esNatural;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Cliente cliente)) return false;
+        return getEsNatural() == cliente.getEsNatural() && Objects.equals(getNombre(), cliente.getNombre()) && Objects.equals(getApellido(), cliente.getApellido()) && Objects.equals(getIdentificacion(), cliente.getIdentificacion()) && Objects.equals(getTelefono(), cliente.getTelefono()) && Objects.equals(getDireccion(), cliente.getDireccion());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getNombre(), getApellido(), getIdentificacion(), getEsNatural(), getTelefono(), getDireccion());
+    }
 
     public  void imprimir() {
       /*

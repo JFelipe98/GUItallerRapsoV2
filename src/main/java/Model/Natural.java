@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.Objects;
+
 public class Natural extends Cliente{
     private String email;
     private String fechaNacimiento;
@@ -43,6 +45,16 @@ public class Natural extends Cliente{
                 '}');
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Natural natural)) return false;
+        if (!super.equals(o)) return false;
+        return Objects.equals(getEmail(), natural.getEmail()) && Objects.equals(getFechaNacimiento(), natural.getFechaNacimiento());
+    }
 
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getEmail(), getFechaNacimiento());
+    }
 }

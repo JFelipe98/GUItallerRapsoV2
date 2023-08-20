@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.Objects;
+
 public class Juridico extends Cliente{
 
 
@@ -28,5 +30,16 @@ public class Juridico extends Cliente{
                 ", nit=' " + nit + '\'');
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Juridico juridico)) return false;
+        if (!super.equals(o)) return false;
+        return Objects.equals(getNit(), juridico.getNit());
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getNit());
+    }
 }

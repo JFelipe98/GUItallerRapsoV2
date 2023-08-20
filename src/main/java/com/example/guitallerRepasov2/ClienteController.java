@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -23,12 +24,15 @@ public class ClienteController extends ActionEvent {
     public Label label_FechaNacimiento;
     public DatePicker dP_Fecha;
     public TextField tF_Email_Nit;
-    public TableView<Cliente> tabla_Clientes;
-    public TableCell<Cliente, String> columnaNombre;
-    public TableCell<Cliente, String> columnaApellido;
-    public TableCell<Cliente, String> columnaIdentificacion;
-    public TableCell<Cliente, String> columnaTelefono;
-    public TableCell<Cliente, String> columnaDireccion;
+    public TableView<Natural> tabla_Clientes;
+    public TableColumn<Natural, String> columnaNombre;
+    public TableColumn<Natural, String> columnaApellido;
+    public TableColumn<Natural, String> columnaIdentificacion;
+    public TableColumn<Natural, String> columnaTelefono;
+    public TableColumn<Natural, String> columnaDireccion;
+    public TableColumn<Natural, String> columnaNatural;
+    public TableColumn<Natural, String> columnaEmail;
+    public TableColumn<Natural, String> columnaFecha;
     ObservableList<String> tipoCliente = FXCollections.observableArrayList("Natural","Juridico");
     @FXML
     public AnchorPane registroClientes;
@@ -56,6 +60,9 @@ public class ClienteController extends ActionEvent {
     public Button btn_Actualizar;
     public Button btn_Eliminar;
 
+    ObservableList<Natural> clientes;
+
+
     public  void initialize() {
         // Inicializa listaCliente
 
@@ -78,34 +85,51 @@ public class ClienteController extends ActionEvent {
 
             }
         });
+        clientes = FXCollections.observableArrayList(
+                new Natural("Juan", "Ciro", "1094970892", "3003283500", "Camino del puerto",true,"jfciros@uqvirtual.edu.co","1998-10-16")
 
+        );
+        tabla_Clientes.setItems(clientes);
+
+        this.columnaNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
+        this.columnaApellido.setCellValueFactory(new PropertyValueFactory("apellido"));
+        this.columnaIdentificacion.setCellValueFactory(new PropertyValueFactory("identificacion"));
+        this.columnaTelefono.setCellValueFactory(new PropertyValueFactory("telefono"));
+        this.columnaDireccion.setCellValueFactory(new PropertyValueFactory("dirección"));
+        this.columnaNatural.setCellValueFactory(new PropertyValueFactory("esNatural"));
+        this.columnaEmail.setCellValueFactory(new PropertyValueFactory("email"));
+        this.columnaFecha.setCellValueFactory(new PropertyValueFactory("fechaNacimiento"));
 
 
     }
 
     public void registrarCliente(){
 
-        String nombre = tF_Nombre.getText();
-        String apellido = tF_Apellido.getText();
-        String identificacion = tF_Identificacion.getText();
-        String telefono = tF_Telefono.getText();
-        String direccion = tF_Direccion.getText();
+        String nombre = this.tF_Nombre.getText();
+        String apellido = this.tF_Apellido.getText();
+        String identificacion = this.tF_Identificacion.getText();
+        String telefono = this.tF_Telefono.getText();
+        String direccion = this.tF_Direccion.getText();
         boolean esNatural=false;
 
-        String email = tF_Email_Nit.getText();
-        String fechaNacimiento= dP_Fecha.getValue()+"";
+        String email = this.tF_Email_Nit.getText();
+        String fechaNacimiento= this.dP_Fecha.getValue()+"";
         String nit = tF_Email_Nit.getText();
 
         if ("Natural".equals(comboBox_TipoCliente.getSelectionModel().getSelectedItem())){
             esNatural=true;
             Natural c1 = new Natural(nombre,apellido,identificacion,telefono,direccion,esNatural,email,fechaNacimiento);
             MainApplication.registrarCliente(c1);
+            this.clientes.add(c1);
+            this.tabla_Clientes.setItems(clientes);
         }
         else{
             esNatural=false;
             Juridico c1= new Juridico(nombre,apellido,identificacion,telefono,direccion,esNatural,nit);
             MainApplication.registrarCliente(c1);
         }
+
+
 
 
          tF_Nombre.clear();
@@ -121,9 +145,9 @@ public class ClienteController extends ActionEvent {
         dP_Fecha.setVisible(false);
 
     }
+    public void actualizarCliente(){
 
-
-
+    }
 
     public void volver() throws IOException {
         Stage stage = (Stage) this.btn_Volver.getScene().getWindow();
