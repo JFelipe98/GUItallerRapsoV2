@@ -45,8 +45,8 @@ public class ProductoController extends ActionEvent {
     public Label lbl_FechaV;
     public TextField tF_Codigo;
     public TableView<Producto> tablaProducto;
-    public TableColumn<Producto, String> columna_CodigoSanit;
-    public TableView<Producto> tablaProducto2;
+    //public TableColumn<Producto, String> columna_CodigoSanit;
+    //public TableView<Producto> tablaProducto2;
     public TableColumn<Producto, String> columna_FechaEnvase;
 ////Método que inicializa parametros, tablas y condiciones de vista según la elección del comBox
     public void initialize() {
@@ -58,18 +58,13 @@ public class ProductoController extends ActionEvent {
        columna_Codigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
        columna_Nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
        columna_Descripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
-       columna_ValorUnit.setCellValueFactory(new PropertyValueFactory<>("valoruni"));
+       columna_ValorUnit.setCellValueFactory(new PropertyValueFactory<>("valorUni"));
        columna_Stock.setCellValueFactory(new PropertyValueFactory<>("cantidadExi"));
-       columna_FechaV.setCellValueFactory(new PropertyValueFactory<>("fechaVencimiento"));
-       columna_CodigoSanit.setCellValueFactory(new PropertyValueFactory<>("codigoAprob"));
-        columna_Temperatura.setCellValueFactory(new PropertyValueFactory<>("tempRecomendada"));
-        columna_FechaV.setCellValueFactory(new PropertyValueFactory<>("fechaEnvasado"));
-        columna_Peso.setCellValueFactory(new PropertyValueFactory<>("pesoEnvase"));
-       columna_FechaEnvase.setCellValueFactory(new PropertyValueFactory<>("pesoEnvase"));
+
        columna_tipoProducto.setCellValueFactory(new PropertyValueFactory<>("tipoProducto"));
        // Inicialización de las tablas de productos con los atributos de la lista observable de productos
        tablaProducto.setItems(MainApplication.getProductos());
-        tablaProducto2.setItems(MainApplication.getProductos());
+        //tablaProducto2.setItems(MainApplication.getProductos());
         // Inicialización del parametro temperatura/peso (comparten textField) de lo contrario, salta error.
         tF_Temperatura_Peso.setText("0");
 // Inicialización del comboBox tipoProducto, dependiendo de la acción, algunos elementos aparecen y desaparecen.
@@ -147,15 +142,15 @@ retorna la lista para ser actualizada la tabla.
         if("Perecederos".equals(tipoProducto)){
             temperatura=0;
             ProductoPerecible p = new ProductoPerecible(tipoProducto,codigo,nombre,descripcion,valorUnit,stock,fechaVenci);
-            tablaProducto.setItems(MainApplication.registrarProductoTabla(p));
+            tablaProducto.setItems(Producto.registrarProductoTabla(p));
 
 
         } else if ("Refrigerados".equals(tipoProducto)) {
             ProductoRefrigerado p1 = new ProductoRefrigerado(tipoProducto,codigo,nombre,descripcion,valorUnit,stock,codigoSanit,temperatura);
-            tablaProducto.setItems(MainApplication.registrarProductoTabla(p1));
+            tablaProducto.setItems(Producto.registrarProductoTabla(p1));
         } else if ("Envasados".equals(tipoProducto)) {
             ProductoEnvasado p2 = new ProductoEnvasado(tipoProducto,codigo,nombre,descripcion,valorUnit,stock,fechaEnvase,peso);
-            tablaProducto.setItems(MainApplication.registrarProductoTabla(p2));
+            tablaProducto.setItems(Producto.registrarProductoTabla(p2));
 
         }
         //Codigo que "limpia" las casillas para agregar un nuevo producto
@@ -185,7 +180,7 @@ retorna la lista para ser actualizada la tabla.
         tF_ValorUnit.setText(productoSeleccionado.getValorUni()+"");
         tF_Stock.setText(productoSeleccionado.getCantidadExi()+"");
 
-        MainApplication.eliminarProducto(productoSeleccionado);
+        Producto.eliminarProducto(productoSeleccionado);
         tablaProducto.refresh();
 
 
@@ -198,9 +193,8 @@ retorna la lista para ser actualizada la tabla.
      */
     public void eliminarProducto(){
         Producto productoSeleccionado = tablaProducto.getSelectionModel().getSelectedItem();
-        MainApplication.eliminarProducto(productoSeleccionado);
+        Producto.eliminarProducto(productoSeleccionado);
         tablaProducto.refresh();
-
     }
 /*
 Método volver.

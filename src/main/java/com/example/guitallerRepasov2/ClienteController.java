@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import com.example.guitallerRepasov2.MainApplication;
 
 public class ClienteController extends ActionEvent {
 
@@ -29,9 +30,9 @@ public class ClienteController extends ActionEvent {
     public TableColumn<Cliente, String> columnaTelefono;
     public TableColumn<Cliente, String> columnaDireccion;
     public TableColumn<Cliente, String> columnaNatural;
-    public TableColumn<Natural, String> columnaEmail;
-    public TableColumn<Natural, String> columnaFecha;
-    public TableColumn<Juridico,String> columnaNit;
+    //public TableColumn<Natural, String> columnaEmail;
+    //public TableColumn<Natural, String> columnaFecha;
+    //public TableColumn<Juridico,String> columnaNit;
   //Lista observable de elementos del comboBox tipo de cliente
     public ObservableList<String> tipoCliente = FXCollections.observableArrayList("--SELECCIONE--","Natural","Juridico");
     @FXML
@@ -75,9 +76,9 @@ public class ClienteController extends ActionEvent {
         columnaTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
         columnaDireccion.setCellValueFactory(new PropertyValueFactory<>("direccion"));
         columnaNatural.setCellValueFactory(new PropertyValueFactory<>("esNatural"));
-        columnaEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-        columnaFecha.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
-        columnaNit.setCellValueFactory(new PropertyValueFactory<>("nit"));
+        //columnaEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        //columnaFecha.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
+        //columnaNit.setCellValueFactory(new PropertyValueFactory<>("nit"));
         //inicialización de la tabla con los objetos predeterminados
         tabla_Clientes.setItems(MainApplication.getClientes());
 
@@ -142,13 +143,15 @@ retorna la lista para ser actualizada la tabla.
             esNatural=true;
             Natural c1 = new Natural(nombre,apellido,identificacion,telefono,direccion,esNatural,email,fechaNacimiento);
 
-            tabla_Clientes.setItems(MainApplication.registrarClienteTabla(c1));
-
+            tabla_Clientes.setItems(Cliente.registrarClienteTabla(c1));
+            for (int i=0;i<MainApplication.getClientes().size();i++) {
+                System.out.println(MainApplication.getClientes().get(i).getNombre());
+            }
         }
         else{
             Juridico c= new Juridico(nombre,apellido,identificacion,telefono,direccion,esNatural,nit);
 
-            tabla_Clientes.setItems(MainApplication.registrarClienteTabla(c));
+            tabla_Clientes.setItems(Cliente.registrarClienteTabla(c));
 
         }
 
@@ -189,7 +192,7 @@ retorna la lista para ser actualizada la tabla.
         else{
             comboBox_TipoCliente.setValue("Juridico");
         }
-        MainApplication.eliminarCliente(clienteSeleccionado);
+        Cliente.eliminarCliente(clienteSeleccionado);
         tabla_Clientes.refresh();
     }
     /*
@@ -199,7 +202,10 @@ retorna la lista para ser actualizada la tabla.
      */
     public void eliminarCliente(){
         Cliente clienteSeleccionado = tabla_Clientes.getSelectionModel().getSelectedItem();
-        MainApplication.eliminarCliente(clienteSeleccionado);
+        Cliente.eliminarCliente(clienteSeleccionado);
+        for (int i=0;i<MainApplication.getClientes().size();i++) {
+            System.out.println(MainApplication.getClientes().get(i).getNombre());
+        }
         tabla_Clientes.refresh();
     }
 /*

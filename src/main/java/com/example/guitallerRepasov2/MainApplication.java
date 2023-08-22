@@ -30,6 +30,24 @@ registro de clientes y productos.
     }
     public static ObservableList<Producto> productos =FXCollections.observableArrayList();
     public static ObservableList<Producto> getProductos() { return productos; }
+    public static ObservableList<Venta> ventas =FXCollections.observableArrayList();
+    public static ObservableList<Venta> getVentas() {
+        return ventas;
+    }
+
+    public static void setVenta(ObservableList<Venta> venta) {
+        MainApplication.ventas = venta;
+    }
+
+
+    public static void setClientes(ObservableList<Cliente> clientes) {
+        MainApplication.clientes = clientes;
+    }
+
+    public static void setProductos(ObservableList<Producto> productos) {
+        MainApplication.productos = productos;
+    }
+
     @Override
     /*
     método start
@@ -60,32 +78,8 @@ registro de clientes y productos.
 
         launch();
     }
-    /*
-    Métodos registrar y eliminar cliente.
-    agregan y remueven respectivamente elementos a la lista observable y retorna
-    la lista para actualizar la tabla
-    }*/
-    public static ObservableList registrarClienteTabla(Cliente c){
-        clientes.add(c);
-       return clientes;
-    }
 
-    public static ObservableList eliminarCliente(Cliente c){
-        clientes.remove(c);
 
-        return clientes;
-    }
-    /*
-   Métodos registrar y eliminar producto.
-   agregan y remueven respectivamente elementos a la lista observable y retorna
-   la lista para actualizar la tabla
-   }*/
-    public static ObservableList registrarProductoTabla(Producto p){
-        productos.add(p);
-        return productos;
-    }
-    public static ObservableList eliminarProducto(Producto p){
-        productos.remove(p);
-        return productos;
-    }
+
+
 }

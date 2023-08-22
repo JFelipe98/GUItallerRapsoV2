@@ -1,7 +1,9 @@
 package Model;
 
 
-    public class Producto {
+import javafx.collections.ObservableList;
+import com.example.guitallerRepasov2.MainApplication;
+public class Producto {
 
         private String codigo;
         private String nombre;
@@ -74,6 +76,22 @@ package Model;
         public void setCantidadExi(int cantidadExi) {
             this.cantidadExi = cantidadExi;
         }
+    /*
+   Métodos registrar y eliminar producto.
+   agregan y remueven respectivamente elementos a la lista observable y retorna
+   la lista para actualizar la tabla
+   }*/
+
+    public static ObservableList registrarProductoTabla(Producto p){
+        MainApplication.productos.add(p);
+        return MainApplication.getProductos();
     }
+    public static ObservableList eliminarProducto(Producto p){
+        MainApplication.productos.remove(p);
+        return MainApplication.getProductos();
+    }
+
+
+}
 
 

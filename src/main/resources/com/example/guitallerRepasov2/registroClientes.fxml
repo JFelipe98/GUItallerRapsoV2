@@ -73,7 +73,7 @@
          <Button fx:id="btn_Volver" mnemonicParsing="false" onAction="#volver" prefWidth="100.0" text="Volver" />
       </children>
    </HBox>
-   <TableView fx:id="tabla_Clientes" layoutX="476.0" layoutY="111.0" prefHeight="224.0" prefWidth="809.0">
+   <TableView fx:id="tabla_Clientes" layoutX="476.0" layoutY="111.0" prefHeight="224.0" prefWidth="559.0">
      <columns>
        <TableColumn fx:id="columnaNombre" prefWidth="75.0" text="Nombre" />
        <TableColumn fx:id="columnaApellido" prefWidth="75.0" text="Apellido" />
@@ -81,9 +81,6 @@
          <TableColumn fx:id="columnaTelefono" prefWidth="76.66668701171875" text="Telefono" />
          <TableColumn fx:id="columnaDireccion" prefWidth="130.0" text="Dirección" />
          <TableColumn fx:id="columnaNatural" prefWidth="63.33331298828125" text="es Natural" />
-         <TableColumn fx:id="columnaEmail" prefWidth="101.33331298828125" text="Email" />
-         <TableColumn fx:id="columnaFecha" prefWidth="98.666748046875" text="Fecha de nacimiento" />
-         <TableColumn fx:id="columnaNit" prefWidth="97.333251953125" text="Nit" />
-     </columns>
+         </columns>
    </TableView>
 </AnchorPane>

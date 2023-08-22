@@ -104,14 +104,4 @@
          <TableColumn fx:id="columna_tipoProducto" prefWidth="105.3333740234375" text="Tipo Producto" />
       </columns>
    </TableView>
-   <TableView fx:id="tablaProducto2" layoutX="450.0" layoutY="301.0" prefHeight="200.0" prefWidth="501.0">
-      <columns>
-         <TableColumn fx:id="columna_FechaV" prefWidth="120.66668701171875" text="Fecha Vencimiento" />
-         <TableColumn fx:id="columna_CodigoSanit" prefWidth="78.6666259765625" text="Codigo Sanit" />
-         <TableColumn fx:id="columna_Temperatura" prefWidth="82.66668701171875" text="Temperatura" />
-         <TableColumn fx:id="columna_FechaEnvase" prefWidth="91.33331298828125" text="Fecha Envase" />
-         <TableColumn fx:id="columna_Peso" prefWidth="74.0" text="Peso Envase" />
-         <TableColumn fx:id="columna_Pais" prefWidth="54.0" text="País" />
-      </columns>
-   </TableView>
 </AnchorPane>

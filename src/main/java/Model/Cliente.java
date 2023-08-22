@@ -1,6 +1,9 @@
 package Model;
 
+import javafx.collections.ObservableList;
+
 import java.util.Objects;
+import com.example.guitallerRepasov2.MainApplication;
 
 public class Cliente {
     public String nombre;
@@ -93,5 +96,20 @@ public class Cliente {
                 ", direccion='" + direccion + '\'' );
     }
        */
+    }
+        /*
+    Métodos registrar y eliminar cliente.
+    agregan y remueven respectivamente elementos a la lista observable y retorna
+    la lista para actualizar la tabla
+    }*/
+
+    public static ObservableList registrarClienteTabla(Cliente c){
+        MainApplication.clientes.add(c);
+        return MainApplication.getClientes();
+    }
+    public static ObservableList eliminarCliente(Cliente c){
+        MainApplication.clientes.remove(c);
+
+        return MainApplication.getClientes();
     }
 }

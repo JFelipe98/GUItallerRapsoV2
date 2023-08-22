@@ -38,4 +38,15 @@ public class MainController extends ActionEvent {
         stage.showAndWait();
 
     }
+
+    public void venta() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("registroVentas.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
+
+    }
 }
