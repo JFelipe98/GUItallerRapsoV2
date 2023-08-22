@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="546.0" prefWidth="1215.0" style="-fx-background-color: #f5efe7;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.guitallerRepasov2.ProductoController">
+   <HBox layoutX="34.0" layoutY="92.0" prefHeight="26.0" prefWidth="359.0">
+      <Label prefHeight="17.0" prefWidth="171.0" text="Tipo de producto">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="comboBox_tipoProducto" prefHeight="25.0" prefWidth="190.0" promptText="--SELECCIONE--">
+         <effect>
+            <DropShadow height="9.28" radius="4.8725000000000005" width="12.21" />
+         </effect></ComboBox>
+   </HBox>
+   <HBox layoutX="34.0" layoutY="132.0" prefHeight="26.0" prefWidth="359.0">
+      <Label prefHeight="17.0" prefWidth="171.0" text="Codigo">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tF_Codigo" prefHeight="25.0" prefWidth="190.0">
+         <effect>
+            <InnerShadow height="11.96" radius="2.49" width="0.0" />
+         </effect></TextField>
+   </HBox>
+   <HBox layoutX="34.0" layoutY="171.0" prefHeight="26.0" prefWidth="359.0">
+      <Label prefHeight="17.0" prefWidth="171.0" text="Nombre">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tF_NombreP" prefHeight="25.0" prefWidth="190.0">
+         <effect>
+            <InnerShadow height="11.96" radius="2.49" width="0.0" />
+         </effect></TextField>
+   </HBox>
+   <HBox layoutX="34.0" layoutY="210.0" prefHeight="26.0" prefWidth="359.0">
+      <Label prefHeight="17.0" prefWidth="171.0" text="Descripción">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tF_Descripcion" prefHeight="25.0" prefWidth="190.0">
+         <effect>
+            <InnerShadow height="11.96" radius="2.49" width="0.0" />
+         </effect></TextField>
+   </HBox>
+   <HBox layoutX="34.0" layoutY="254.0" prefHeight="26.0" prefWidth="359.0">
+      <Label prefHeight="17.0" prefWidth="171.0" text="Valor unitario">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tF_ValorUnit" prefHeight="25.0" prefWidth="190.0">
+         <effect>
+            <InnerShadow height="11.96" radius="2.49" width="0.0" />
+         </effect></TextField>
+   </HBox>
+   <HBox layoutX="34.0" layoutY="294.0" prefHeight="26.0" prefWidth="359.0">
+      <Label prefHeight="17.0" prefWidth="171.0" text="Cantidad Disp.">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tF_Stock" prefHeight="25.0" prefWidth="190.0">
+         <effect>
+            <InnerShadow height="11.96" radius="2.49" width="0.0" />
+         </effect></TextField>
+   </HBox>
+   <Label fx:id="lbl_FechaV" layoutX="32.0" layoutY="333.0" prefHeight="17.0" prefWidth="171.0" text="Fecha de vencimiento" visible="false">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </Label>
+   <DatePicker fx:id="dP_FechaV" layoutX="203.0" layoutY="331.0" prefHeight="25.0" prefWidth="190.0" visible="false" />
+   <TextField fx:id="tF_CodigoSanit" layoutX="203.0" layoutY="330.0" prefHeight="25.0" prefWidth="190.0" visible="false" />
+   <HBox layoutX="34.0" layoutY="375.0" prefHeight="26.0" prefWidth="359.0">
+      <Label fx:id="lbl_Temp_Peso" prefHeight="17.0" prefWidth="171.0" text="Código R. Sanitario" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tF_Temperatura_Peso" prefHeight="25.0" prefWidth="190.0" visible="false" />
+   </HBox>
+   <HBox layoutX="34.0" layoutY="419.0" prefHeight="26.0" prefWidth="359.0">
+      <Label fx:id="lbl_PaisOrigen" prefHeight="17.0" prefWidth="171.0" text="País de origen" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="comboBox_PaisOrigen" prefHeight="25.0" prefWidth="190.0" promptText="--SELECCIONE--" visible="false" />
+   </HBox>
+   <HBox layoutX="34.0" layoutY="481.0" prefHeight="26.0" prefWidth="400.0">
+      <Button fx:id="btn_Registrar" mnemonicParsing="false" onAction="#registrarProducto" prefWidth="100.0" text="Registrar">
+         <effect>
+            <DropShadow />
+         </effect></Button>
+      <Button fx:id="btn_Actualizar" mnemonicParsing="false" onAction="#actualizarProducto" prefWidth="100.0" text="Actualizar">
+         <effect>
+            <DropShadow />
+         </effect></Button>
+      <Button fx:id="btn_Eliminar" mnemonicParsing="false" onAction="#eliminarProducto" prefWidth="100.0" text="Eliminar">
+         <effect>
+            <DropShadow />
+         </effect></Button>
+      <Button fx:id="btn_VolverP" mnemonicParsing="false" onAction="#volver" prefWidth="100.0" text="Volver">
+         <effect>
+            <DropShadow />
+         </effect></Button>
+   </HBox>
+   <TableView fx:id="tablaProducto" layoutX="450.0" layoutY="97.0" prefHeight="200.0" prefWidth="501.0">
+      <columns>
+         <TableColumn fx:id="columna_Codigo" prefWidth="58.0" text="Codigo" />
+         <TableColumn fx:id="columna_Nombre" prefWidth="77.99990844726562" text="Nombre" />
+         <TableColumn fx:id="columna_Descripcion" prefWidth="90.666748046875" text="Descripción" />
+         <TableColumn fx:id="columna_ValorUnit" prefWidth="75.0" text="Valor unit." />
+         <TableColumn fx:id="columna_Stock" prefWidth="92.0" text="Stock" />
+         <TableColumn fx:id="columna_tipoProducto" prefWidth="105.3333740234375" text="Tipo Producto" />
+      </columns>
+      <effect>
+         <DropShadow height="15.14" radius="6.3375" width="12.21" />
+      </effect>
+   </TableView>
+   <Pane layoutX="-1.0" prefHeight="71.0" prefWidth="1221.0" style="-fx-background-color: #102c57;">
+      <children>
+         <Label layoutX="437.0" layoutY="5.0" text="REGISTRO PRODUCTO" textFill="WHITE">
+            <font>
+               <Font size="42.0" />
+            </font>
+         </Label>
+      </children>
+   </Pane>
+</AnchorPane>
