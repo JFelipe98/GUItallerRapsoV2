@@ -19,6 +19,7 @@ public class MainApplication extends Application {
     ProductoPerecible pPrueba = new ProductoPerecible("Perecederos","001","Milo","Bebida en polvo",5000.0,20,"2024-01-13");
    ProductoRefrigerado pPrueba2 = new ProductoRefrigerado("Refrigerados","002","Fresa","Fruta",6000.0,300,"A234",12.0);
    ProductoEnvasado pPrueba3 = new ProductoEnvasado("Envasados","003","Yerba Mate","Infusiones",5000.0,20,"2023-07-31",125.0);
+    ProductoEnvasado pPrueba4 = new ProductoEnvasado("Envasados","004","Yerba","Infusiones",10000.0,10,"2023-07-31",125.0);
 
 /*
 Listas observables de clientes y productos, esenciales para guardar la información del
@@ -69,7 +70,7 @@ registro de clientes y productos.
         productos.add(pPrueba);
         productos.add(pPrueba2);
         productos.add(pPrueba3);
-
+        productos.add(pPrueba4);
 
 
     }

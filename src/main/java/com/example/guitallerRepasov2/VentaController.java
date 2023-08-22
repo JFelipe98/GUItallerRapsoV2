@@ -130,4 +130,8 @@ public class VentaController extends ActionEvent {
         Stage stage = (Stage) this.btnConfirmar.getScene().getWindow();
         stage.close();
     }
+
+    public void quitarProducto(){
+
+    }
 }
