@@ -152,6 +152,11 @@ retorna la lista para ser actualizada la tabla.
             ProductoEnvasado p2 = new ProductoEnvasado(tipoProducto,codigo,nombre,descripcion,valorUnit,stock,fechaEnvase,peso);
             tablaProducto.setItems(Producto.registrarProductoTabla(p2));
 
+        } else if("--SELECCIONE--".equals(tipoProducto)){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Elija una opción");
+            alert.showAndWait();
         }
         //Codigo que "limpia" las casillas para agregar un nuevo producto
         tF_NombreP.clear();

@@ -147,12 +147,15 @@ retorna la lista para ser actualizada la tabla.
             for (int i=0;i<MainApplication.getClientes().size();i++) {
                 System.out.println(MainApplication.getClientes().get(i).getNombre());
             }
-        }
+        } else if("--SELECCIONE--".equals(comboBox_TipoCliente.getSelectionModel().getSelectedItem())){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Elija una opción");
+            alert.showAndWait();}
         else{
             Juridico c= new Juridico(nombre,apellido,identificacion,telefono,direccion,esNatural,nit);
 
             tabla_Clientes.setItems(Cliente.registrarClienteTabla(c));
-
         }
 
 
