@@ -84,4 +84,23 @@ public class Venta {
         System.out.println(prod.getNombre());
         return prod;
     }
+
+    public double calcularIva(){
+        double iva=getTotal()*0.19;
+        setIva(iva);
+        return iva;
+    }
+    public double calcularTotal(){
+        double total=0;
+        for(int i =0;i<getDetalleVenta().size();i++){
+            total=getDetalleVenta().get(i).getSubtotal()+total;
+        }
+        setTotal(total);
+        return total;
+    }
+    public double calcularSubtotal(){
+        double sub=total-iva;
+
+        return sub;
+    }
 }

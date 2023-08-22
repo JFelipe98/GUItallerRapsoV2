@@ -9,8 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import Model.DetalleVenta;
-import com.example.guitallerRepasov2.MainApplication;
-import Model.DetalleVenta;
+
 
 public class VentaController extends ActionEvent {
     //Atributos de interfaz
@@ -33,10 +32,10 @@ public class VentaController extends ActionEvent {
     public TableColumn<DetalleVenta, String> columnaCantidad;
     public TableColumn<DetalleVenta, String> columnaSubtotal;
     public TableView<DetalleVenta> tablaDetalle;
-    private Venta venta= new Venta();
+    private Venta venta=new Venta();
 
     public VentaController() {
-        tablaDetalle = new TableView<DetalleVenta>();
+        tablaDetalle = new TableView<>();
     }
 
     public void initialize() {
@@ -78,6 +77,8 @@ public class VentaController extends ActionEvent {
         dialog.showAndWait().ifPresent(result -> {
             DetalleVenta detalle=new DetalleVenta(Integer.parseInt(result),productoSeleccionado);
             venta.getDetalleVenta().add(detalle);
+            productoSeleccionado.setCantidadExi(productoSeleccionado.getCantidadExi()-Integer.parseInt(result));
+
         });
         for(int i=0;i<venta.getDetalleVenta().size();i++){
             System.out.println("Cantidad "+venta.getDetalleVenta().get(i).getCantidad()+"\n Subtotal"+venta.getDetalleVenta().get(i).getSubtotal());
@@ -97,7 +98,11 @@ public class VentaController extends ActionEvent {
         temp.add(prod);
 
         if(temp.get(0).getNombre().isEmpty()){
-            System.out.println("Error");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Producto no encontrado");
+
+            alert.showAndWait();
         }else{
             System.out.println(temp.size());
             tablaProducto.setItems(temp);
@@ -111,6 +116,18 @@ public class VentaController extends ActionEvent {
     }
 
     public void confirmarVenta(){
+
+        venta.calcularTotal();
+
         MainApplication.getVentas().add(venta);
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmación de venta");
+        alert.setHeaderText("La venta se registro exitosamente, \n por el valor de:");
+        alert.setContentText("IVA: "+ venta.calcularIva()+"\n SUBTOTAL: " + venta.calcularSubtotal() + "\n TOTAL: "+
+                venta.getTotal());
+        alert.showAndWait();
+        Stage stage = (Stage) this.btnConfirmar.getScene().getWindow();
+        stage.close();
     }
 }

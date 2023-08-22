@@ -37,6 +37,6 @@
    <Button fx:id="btnAgregar" layoutX="270.0" layoutY="348.0" mnemonicParsing="false" onAction="#agregarProducto" prefHeight="25.0" prefWidth="80.0" text="Agregar" />
    <Button fx:id="btnQuitar" layoutX="601.0" layoutY="348.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Quitar" />
    <TextField fx:id="txtFieldBuscar" layoutX="53.0" layoutY="348.0" prefHeight="25.0" prefWidth="96.0" />
-   <Button fx:id="btnConfirmar" layoutX="701.0" layoutY="348.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Confirmar" />
+   <Button fx:id="btnConfirmar" layoutX="701.0" layoutY="348.0" mnemonicParsing="false" onAction="#confirmarVenta" prefHeight="25.0" prefWidth="80.0" text="Confirmar" />
    <Button fx:id="btn_Volver" layoutX="451.0" layoutY="348.0" mnemonicParsing="false" onAction="#volver" prefHeight="25.0" prefWidth="80.0" text="Volver" />
 </AnchorPane>
